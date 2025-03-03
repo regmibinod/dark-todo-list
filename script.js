@@ -21,39 +21,50 @@ function addTask() {
   listContainer.appendChild(li);
 }
 
-// todo list  adding event listiner 
+// todo list  adding event listiner
 addNowBtn.addEventListener("click", function () {
   addTask();
   saveData();
 });
 
-// todo list checked and remove  function 
+// todo list checked and remove  function
 function listDeleteAndChecked(e) {
-    if (e.target.tagName === "LI") {
-      e.target.classList.toggle("checked");
-      saveData();
-    } else if (e.target.className === "delete") {
-      e.target.parentElement.remove();
-      saveData();
-    }
+  if (e.target.tagName === "LI") {
+    e.target.classList.toggle("checked");
+    saveData();
+  } else if (e.target.className === "delete") {
+    e.target.parentElement.remove();
+    saveData();
   }
+}
 
-// todo list eventlistiner 
+// todo list eventlistiner
 
-listContainer.addEventListener("click", (e)=>listDeleteAndChecked(e) );
+listContainer.addEventListener("click", (e) => listDeleteAndChecked(e));
 
 // save Data to local storage
 
 function saveData() {
   localStorage.setItem("data", listContainer.innerHTML);
 }
+
+// function to attach event listeners to delete buttons
+function addEventListener() {
+  document.querySelectorAll(".delete").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      this.parentElement.remove();
+      saveData();
+    });
+  });
+}
 // loading local storage data
 
 function getData() {
   const data = localStorage.getItem("data");
-if(data){
+  if (data) {
     listContainer.innerHTML = data;
-}
+  }
 }
 
+// Run the function after loading the data
 getData();
