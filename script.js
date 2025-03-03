@@ -19,6 +19,7 @@ function addTask() {
   li.appendChild(deletBtn);
 
   listContainer.appendChild(li);
+  inputUser.value = "";
 }
 
 // todo list  adding event listiner
