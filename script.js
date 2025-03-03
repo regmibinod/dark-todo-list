@@ -51,7 +51,9 @@ function saveData() {
 
 function getData() {
   const data = localStorage.getItem("data");
-  listContainer.innerHTML = data;
+if(data){
+    listContainer.innerHTML = data;
+}
 }
 
 getData();
